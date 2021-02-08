@@ -46,4 +46,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(BlogPost::class);
     }
+
+    public function getAdminAttribute(): bool
+    {
+        $super_user = $this->super_user ?? false;
+
+        return (bool) $super_user;
+    }
 }
