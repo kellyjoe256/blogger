@@ -28,6 +28,8 @@
             </div>
         </header>
 
+        @include('includes.common.alert')
+
         @yield('content')
     </div>
 </body>
