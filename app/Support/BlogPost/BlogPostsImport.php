@@ -28,6 +28,6 @@ class BlogPostsImport
             throw new Exception($message);
         }
 
-        return static::service()->{$method}(...$arguments);
+        return $service->{$method}(...$arguments);
     }
 }
