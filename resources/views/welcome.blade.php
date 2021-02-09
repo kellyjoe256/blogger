@@ -1,41 +1,30 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="flex flex-col">
-        <div class="min-h-screen flex items-center justify-center">
-            <div class="flex flex-col justify-around h-full">
-                <div>
-                    <h1 class="mb-6 text-gray-600 text-center font-light tracking-wider text-4xl sm:mb-8 sm:text-6xl">
-                        {{ config('app.name', 'Laravel') }}
+    <div class="container w-full md:max-w-3xl mx-auto pt-20">
+        @include('includes.common.sorter')
+
+        @foreach($blog_posts as $blog_post)
+            <div class="w-full px-4 md:px-6 text-xl text-gray-800 leading-normal" style="font-family:Georgia,serif;">
+                <!--Title-->
+                <div class="font-sans">
+                    <h1 class="font-bold font-sans break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-4xl">
+                        <a href="{{ route('show_blog_post', $blog_post->id)}}">
+                            {{ $blog_post->title }}
+                        </a>
                     </h1>
-                    <ul class="flex flex-col space-y-2 sm:flex-row sm:flex-wrap sm:space-x-8 sm:space-y-0">
-                        <li>
-                            <a href="https://laravel.com/docs" class="no-underline hover:underline text-sm font-normal text-teal-800 uppercase" title="Documentation">Documentation</a>
-                        </li>
-                        <li>
-                            <a href="https://laracasts.com" class="no-underline hover:underline text-sm font-normal text-teal-800 uppercase" title="Laracasts">Laracasts</a>
-                        </li>
-                        <li>
-                            <a href="https://laravel-news.com" class="no-underline hover:underline text-sm font-normal text-teal-800 uppercase" title="News">News</a>
-                        </li>
-                        <li>
-                            <a href="https://nova.laravel.com" class="no-underline hover:underline text-sm font-normal text-teal-800 uppercase" title="Nova">Nova</a>
-                        </li>
-                        <li>
-                            <a href="https://forge.laravel.com" class="no-underline hover:underline text-sm font-normal text-teal-800 uppercase" title="Forge">Forge</a>
-                        </li>
-                        <li>
-                            <a href="https://vapor.laravel.com" class="no-underline hover:underline text-sm font-normal text-teal-800 uppercase" title="Vapor">Vapor</a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/laravel/laravel" class="no-underline hover:underline text-sm font-normal text-teal-800 uppercase" title="GitHub">GitHub</a>
-                        </li>
-                        <li>
-                            <a href="https://tailwindcss.com" class="no-underline hover:underline text-sm font-normal text-teal-800 uppercase" title="Tailwind Css">Tailwind CSS</a>
-                        </li>
-                    </ul>
+                    <p class="text-sm md:text-base font-normal text-gray-600">
+                        Published on
+                        <span>{{ optional
+                        ($blog_post->publication_date)
+                        ->format('F j, Y') }}</span>
+                    </p>
                 </div>
+
+                <p class="py-6">{{ $blog_post->blogPostIntro() }}</p>
             </div>
-        </div>
+        @endforeach
+
+        {{ $blog_posts->appends($_GET)->links('includes.pagination.simple') }}
     </div>
 @endsection
