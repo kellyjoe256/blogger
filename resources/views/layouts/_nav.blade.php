@@ -11,7 +11,7 @@
         >{{ __('Dashboard') }}</a>
 
         <a
-            href="#"
+            href="{{ route('dashboard.posts') }}"
             class="text-gray-50 no-underline hover:underline"
         >{{ __('Posts') }}</a>
 
