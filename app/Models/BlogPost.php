@@ -26,4 +26,9 @@ class BlogPost extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function blogPostIntro($count = 100): string
+    {
+        return substr($this->description, 0, $count) . '...';
+    }
 }
