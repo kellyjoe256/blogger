@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+//use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'username',
+        'super_user',
     ];
 
     /**
@@ -39,6 +41,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
+        'super_user' => 'boolean',
         'email_verified_at' => 'datetime',
     ];
 
@@ -49,8 +52,6 @@ class User extends Authenticatable
 
     public function getAdminAttribute(): bool
     {
-        $super_user = $this->super_user ?? false;
-
-        return (bool) $super_user;
+        return (bool) ($this->super_user ?? false);
     }
 }

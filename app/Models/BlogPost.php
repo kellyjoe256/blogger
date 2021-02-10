@@ -16,6 +16,11 @@ class BlogPost extends Model
         'title',
         'description',
         'publication_date',
+        'user_id',
+    ];
+
+    protected $casts = [
+        'user_id' => 'integer',
     ];
 
     protected $dates = [
