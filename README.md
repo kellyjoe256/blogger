@@ -27,6 +27,6 @@
     - run `crontab -e` which open your crontab file
     - paste this `* * * * * cd /path_to_project && php artisan schedule:run >> /dev/null 2>&1` to your crontab and save
     - don't forget to change `/path_to_project` to the path where your  cloned the repository
-- If web server is not setup, run `php artisan serve`
+- If a webserver is not set up to run the project, run `php artisan serve`
 - Launch a web browser and type `http://localhost:8000`  to try out the project
 - You can login using the email `admin@example.com` and password as `password`
