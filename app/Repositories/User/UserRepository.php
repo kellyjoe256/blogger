@@ -28,6 +28,7 @@ class UserRepository
     {
         if (!count($values)) {
             $values = [
+                'name' => 'John Doe',
                 'email' => 'admin@example.com',
                 'password' => Hash::make('password'),
                 'email_verified_at' => now(),
